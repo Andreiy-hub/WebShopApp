@@ -14,36 +14,27 @@ namespace WebShopApp.Core.Services
     {
         private readonly ApplicationDbContext _context;
 
-            public CategoryService(ApplicationDbContext context)
+        public CategoryService(ApplicationDbContext context)
         {
             _context = context;
         }
-        public Category GetCategoryById(int categoryId) 
+
+        public Category GetCategoryById(int categoryId)
         {
             return _context.Categories.Find(categoryId);
         }
-        public List<Category> GetAllCategories()
+
+        public List<Category> GetCategories()
         {
             List<Category> categories = _context.Categories.ToList();
             return categories;
         }
-        public List<Product> GetProductsByCategory(int categoryId) 
+
+        public List<Product> GetProductsByCategory(int categoryId)
         {
             return _context.Products
                 .Where(x => x.CategoryId == categoryId)
                 .ToList();
         }
-
-        public List<Category> GetCategories()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Product> GetProductByCategory(int categoryId)
-        {
-            throw new NotImplementedException();
-        }
     }
-    
-   
 }
